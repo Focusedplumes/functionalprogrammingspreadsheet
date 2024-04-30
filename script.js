@@ -4,8 +4,14 @@ const infixToFunction = {
   "*": (x, y) => x * y,
   "/": (x, y) => x / y,
 };
+
+const infixEval = (str, regex) => str.replace(regex, (_match, arg1, operator, arg2) => infixToFunction[operator](parseFloat(arg1), parseFloat(arg2)));
+
+const highPrecedence = str => {
+const regex = /([\d.]+)([*\/])([\d.]+)/;
+};
+
 const isEven = num => num % 2 === 0;
-const infixEval = (str, regex) => str.replace(regex, (_match, arg1, operator, arg2) => infixToFunction[operator]);
 const sum = nums => nums.reduce((acc, el) => acc + el, 0);
 const average = nums => sum(nums) / nums.length;
 
@@ -14,8 +20,8 @@ const median = nums => {
     const length = sorted.length
     const middle = length / 2 - 1;
     return isEven(length)
-    ? average([sorted[middle], sorted[middle + 1]])
-    : sorted[Math.ceil(middle)];
+      ? average([sorted[middle], sorted[middle + 1]])
+      : sorted[Math.ceil(middle)];
   }
 
 const spreadsheetFunctions = {
